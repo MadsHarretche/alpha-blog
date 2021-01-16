@@ -9,8 +9,14 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+<!-- Det her er en HTML kommentar 
+Nedenunder benytter jeg flash, som er en metode der typisk benyttes når noget er saved eller created succesfully.
+-->
 
   <body>
+    <% flash.each do |name, msg| %>
+      <%= msg %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
