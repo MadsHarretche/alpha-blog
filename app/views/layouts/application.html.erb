@@ -14,9 +14,7 @@ Nedenunder benytter jeg flash, som er en metode der typisk benyttes når noget e
 -->
 
   <body>
-    <% flash.each do |name, msg| %>
-      <%= msg %>
-    <% end %>
+    <%= render 'layouts/messages' %>
     <%= yield %>
   </body>
 </html>
