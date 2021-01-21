@@ -48,3 +48,14 @@ background-color: black !important;
   color: white;
   text-align: center;
 }
+
+.card {
+  margin: 0 auto; /* Added */
+  float: none; /* Added */
+  margin-bottom: 10px; /* Added */
+}
+
+.card-body {
+  width: full;
+  border: 10;
+}
