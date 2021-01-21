@@ -1,0 +1,50 @@
+@import 'bootstrap/dist/css/bootstrap';
+
+
+.navbar {
+
+background-color: black !important;
+
+
+}
+
+.nav-link { 
+  color: white !important;
+}
+
+#page-content {
+  
+  background-color: lightgrey;
+}
+
+#logo {
+ float: left;
+ font-size: 1.7em;
+ color: #fff;
+ text-transform: uppercase;
+ letter-spacing: -1px;
+ font-weight: bold;
+}
+
+#homecontainer {
+  margin-top: 25px ;
+  color: white;
+}
+
+.jumbotron {
+  background-image: asset-url('glenn-carstens-peters-P1qyEf1g0HU-unsplash');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-cover: cover;
+  height: 425 px;
+}
+
+.footer {
+  position: fixed;
+  left: 1;
+  bottom: 1;
+  width: 100%;
+  background-color: black;
+  color: white;
+  text-align: center;
+}

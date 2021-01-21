@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>AlphaBlog</title>
+    
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -14,7 +15,8 @@ Nedenunder benytter jeg flash, som er en metode der typisk benyttes når noget e
 Flash metoden er lagt i en partial, da den skal kunne benyttes flere steder, se fil: layout/messages
 -->
 
-  <body>
+  <body class="d-flex flex-column">
+    <%= render 'layouts/navigation' %>
     <%= render 'layouts/messages' %>
     <%= yield %>
   </body>
