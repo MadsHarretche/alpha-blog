@@ -14,11 +14,12 @@
 Nedenunder benytter jeg flash, som er en metode der typisk benyttes når noget er saved eller created succesfully.
 Flash metoden er lagt i en partial, da den skal kunne benyttes flere steder, se fil: layout/messages
 -->
-
   <body class="d-flex flex-column">
     <%= render 'layouts/navigation' %>
-    <%= render 'layouts/messages' %>
-    <%= yield %>
+    <div id="page-content">
+      <%= render 'layouts/messages' %>
+      <%= yield %>
+    </div>
     <%= render 'layouts/footer' %>
   </body>
 </html>

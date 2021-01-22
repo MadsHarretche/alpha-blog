@@ -1,17 +1,6 @@
-<div id="page-content">
-  <h1 class="text-center mt-4">Articles listing page</h1>
-
-  <table>
-    <thead>
-        <tr>
-          <th>Title</th>
-          <th>Description</th>
-          <th colspan="3">Actions</th>
-        </tr>
-    </thead>
-    
-    <div class="container">
-      <% @articles.each do |article|%>
+<h1 class="text-center mt-4">Articles listing page</h1>
+  <div class="container">
+    <% @articles.each do |article|%>
       <div class="row justify-content-md-center">
         <div class="col-12 mt-4">
           <div class="card text-center shadow mb-5 bg-white rounded", style="width: 70rem;"> 
@@ -32,6 +21,5 @@
           </div>
         </div>
       </div>
-      <% end %>
-    </div>
-</div>
+    <% end %>
+  </div>
