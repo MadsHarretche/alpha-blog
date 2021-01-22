@@ -39,15 +39,6 @@ background-color: black !important;
   height: 425 px;
 }
 
-.footer {
-  position: fixed;
-  left: 1;
-  bottom: 1;
-  width: 100%;
-  background-color: black;
-  color: white;
-  text-align: center;
-}
 
 .card {
   margin: 0 auto; /* Added */
@@ -58,4 +49,13 @@ background-color: black !important;
 .card-body {
   width: full;
   border: 10;
+}
+
+
+#footer {
+  color: red;
+}
+
+.field_with_errors {
+ position: none;
 }
