@@ -4,9 +4,12 @@ class UsersController < ApplicationController
     @user = User.new
     
     params = { user: {username: 'test1234', email: 'email@email'} }
-    
-    
   end
+  
+  def edit
+    @user = User.find(params[:id])
+  end
+  
   
   def create
     @user = User.new(user_params)
@@ -19,8 +22,21 @@ class UsersController < ApplicationController
     end
   end
   
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+        #Giver besked efter man har trykket update
+        flash[:notice] = "User was updated successfully!"
+        redirect_to articles_path(@article)
+      else
+        render 'edit'
+      end
+  end
+  
+  
   private
   def user_params
     params.require(:user).permit(:username, :email)
   end
+  
 end
