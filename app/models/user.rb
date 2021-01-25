@@ -11,5 +11,5 @@ class User < ApplicationRecord
                         uniqueness: { case_sensitive: false }, 
                         length: { maximum: 105 },
                         format: { with: VALID_EMAIL_REGAX }
-has_secure_password
+  has_secure_password
 end

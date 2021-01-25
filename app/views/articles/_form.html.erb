@@ -1,8 +1,5 @@
-<!-- Dette view bliver rendered når skal dukke succes eller fejl beskeder op
-
--->
 <div class="container">
-  <%= render 'shared/errors' %>
+  <%= render 'shared/errors', obj: @article %>
   <div class="row justify-content-center">
     <div class="col-10">
       <%= form_with(model: @article, class:"shadow p-3 mb-5 bg-info rounded", local: true) do |f| %>
@@ -28,7 +25,7 @@
       </div>
       <div class="mb-3">
         <%= link_to ' [Cancel and return to articles listing ]', articles_path, class: "text-info"%>
-      </div>
+    </div>
   </div>
 </div>
 
