@@ -1,0 +1,28 @@
+<h1 class="text-center mt-4">Choose which kind of source you want to format</h1>
+
+<%= @source_type %>
+    
+    <% if @source_type.nil? %>
+    
+    <% elsif @source_type.identifier == 'book' %>
+       <%= render 'book' %>
+    <% elsif @source_type.identifier == 'chapter_book' %>
+       <%= render 'chapter_in_edited_book'%>
+    <% elsif @source_type.identifier == 'articles_journal' %>
+       <%= render 'journal_articles' %>
+    <% elsif @source_type.identifier == 'public_source_with_author' %>
+       <%= render 'public_source_without_author' %>
+    <% elsif @source_type.identifier == 'public_source_with_author' %>
+      <%= render 'public_source_with_author' %>
+      
+    <% end %>
+      
+    <form action="/sources/new" method="get">
+      <select name="source_type_id" id="source_type">
+        <% @source_types.each do |source_type| %>
+          <option value="<%= source_type.id %>"><%= source_type.name %></option>
+        <% end %>
+      </select>
+      <input type="submit" value="Submit">
+    </form>
+      

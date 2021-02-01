@@ -1,0 +1,87 @@
+<h1 class="text-center mt-4">Create new source</h1>
+<h3 class="text-center mt-4">Public source without author</h3>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <%= form_with(model: @source, class:"shadow p-5 mb-5 bg-info rounded", local: true) do |f| %>
+  
+        <div class="form-group row">
+          <%= f.label :book_title, class: "col-1 form-label text-light" %>
+          <div class="col-10">
+            <%= f.text_field :book_title, class: "form-control shadow rounded", placeholder: "Book title" %>
+          </div>  
+        </div>
+        
+        <div class="form-group row">
+          <%= f.label :edition_number, class: "col-2-form-label text-light" %>
+          <div class="col-10">
+            <%= f.text_field :edition_number, class: "form-control shadow rounded", placeholder: "Edition number" %>
+          </div>
+        </div>
+        
+        <div class="form-group row">
+          <%= f.label :author_firstname, class: "col-1 form-label text-light" %>
+          <div class="col-10">
+            <%= f.text_field :author_firstname, class: "form-control shadow rounded", placeholder: "First name of author" %>
+          </div>  
+        </div>
+        
+        <div class="form-group row">
+          <%= f.label :author_middlename, class: "col-1 form-label text-light" %>
+          <div class="col-10">
+            <%= f.text_field :author_middlename, class: "form-control shadow rounded", placeholder: "Middlename of author" %>
+          </div>  
+        </div>
+        
+        <div class="form-group row">
+          <%= f.label :author_lastname, class: "col-2-form-label text-light" %>
+          <div class="col-10">
+            <%= f.text_field :author_lastname, class: "form-control shadow rounded", placeholder: "Lastname of author" %>
+          </div>
+        </div>
+        
+        <div class="form-group row">
+          <%= f.label :publisher_name, class: "col-2-form-label text-light" %>
+          <div class="col-10">
+            <%= f.text_field :publisher_name, class: "form-control shadow rounded", placeholder: "Publisher" %>
+          </div>
+        </div>
+        
+        <div class="form-group row">
+          <%= f.label :city_name, class: "col-2-form-label text-light" %>
+          <div class="col-10">
+            <%= f.text_field :city_name, class: "form-control shadow rounded", placeholder: "City" %>
+          </div>
+        </div>
+        
+        <div class="form-group row">
+          <%= f.label :publication_year, class: "col-2-form-label text-light" %>
+          <div class="col-10">
+            <%= f.text_field :publication_year, class: "form-control shadow rounded", placeholder: "Publication year" %>
+          </div>
+        </div>
+        
+        <div class="form-group row">
+          <%= f.label :chapter, class: "col-2-form-label text-light" %>
+          <div class="col-10">
+            <%= f.text_field :chapter, class: "form-control shadow rounded", placeholder: "Chapter" %>
+          </div>
+        </div>
+        
+        <div class="form-group row">
+          <%= f.label :page, class: "col-2-form-label text-light" %>
+          <div class="col-10">
+            <%= f.text_field :page, class: "form-control shadow rounded", placeholder: "Eksempel: s. 147-167" %>
+          </div>
+        </div>
+    
+        <div class="form-group row justify-content-center">
+          <%= f.submit class: "btn btn-outline-light btn-lg" %>
+        </div>
+      <% end %>
+      </div>
+      <div class="mb-3">
+        <%= link_to ' [Cancel and return to articles listing ]', articles_path, class: "text-info"%>
+    </div>
+  </div>
+</div>
