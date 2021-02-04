@@ -5,5 +5,12 @@
   <%= link_to "Edit your profile", edit_user_path, class: "btn btn-outline-info" %> 
 </div>
 
+<div class="flickr_pagination">
+  <%= will_paginate @articles, :container => false %>
+</div>
 
 <%= render 'articles/article', obj: @user.articles %>
+
+<div class="flickr_pagination mb-4">
+  <%= will_paginate @articles, :container => false %>
+</div>
