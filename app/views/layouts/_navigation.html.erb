@@ -33,7 +33,7 @@
                   Profile [<%= current_user.username%>]
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <%= link_to "View your profile", users_path(current_user), class: "dropdown-item" %> <!--Current_user giver brugerens id til users_path) --> 
+                    <%= link_to "View your profile", user_path(current_user), class: "dropdown-item" %> <!--Current_user giver brugerens id til users_path) --> 
                   <%= link_to "Edit your profile", edit_user_path(current_user), class: "dropdown-item" %>
                 </ul>
               </li>
