@@ -1,13 +1,11 @@
 class ArticlesController < ApplicationController
     #before_action kalder set_article på alle metoder dvs. @article = Article.find(params[:id])
     #Men kun de metoder som er skrevet i only:
-    before_action :set_article, only: [:show, :edit, :update, :destroy]
+    before_action :set_article, only: [:show, :edit, :update, :destroy] #finder id'et på den artikel du vil handle med
     before_action :require_user, except: [:show, :index]
     before_action :require_same_user, only: [:edit, :update, :destroy]
     
     def show
-      #finder id'et på den artikel du vil handle med
-      set_article
       @user = User.first
     end
     
@@ -21,7 +19,7 @@ class ArticlesController < ApplicationController
     end
     
     def edit
-    
+      
     end
     
     
@@ -67,7 +65,7 @@ class ArticlesController < ApplicationController
     end
     
     def require_same_user
-      if current_user != @article.user
+      if current_user != @article.user && !current_user.admin? #if current user is admin. Don't redirect
       flash[:alert] = "You cannot edit others articles"
         redirect_to @article
       end
