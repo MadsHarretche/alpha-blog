@@ -9,4 +9,5 @@ root 'pages#home'
   delete 'logout', to: 'sessions#destroy'
   get 'sources', to: 'sources#new'
   resources :sources
+  resources :categories, except: [:destroy]
 end
