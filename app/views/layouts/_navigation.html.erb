@@ -1,71 +1,69 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <%= link_to "Mads blog", root_path, class: "navbar-brand", id: "logo" %>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              
-              <%= link_to "Articles", articles_path, class: "nav-link active" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Bloggers", users_path, class: "nav-link" %>
-            </li>
+<!--https://getbootstrap.com/docs/4.6/examples/blog/ -->
+<body>
+  
+    <header class="blog-header py-3">
+      <div class="row flex-nowrap justify-content-between align-items-center">
+        <div class="col-4 pt-1">
+          <a class="text-muted m-3" href="#">Subscribe</a>
+          <a class="text-muted m-3" href="<%= articles_path %>">Articles</a>
+          <a class="text-muted m-3" href="<%= users_path %>">Bloggers</a>
+          <% if logged_in? %>
+            <a class="text-muted m-5" href="<%= new_article_path %>">Create new article</a>
+          <% end %>
+        </div>
+        <div class="col-1.5 text-center">
+          <%= link_to "Mads blog", root_path, class: "blog-header-logo text-dark", id: "logo" %>
+        </div>
+        <div class="col-4 d-flex justify-content-end align-items-center">
+          <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <a class="text-muted" href="#" aria-label="Search">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24" focusable="false"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"></circle><path d="M21 21l-5.2-5.2"></path></svg>
+            </a>
+          </form>
+          <% if !logged_in? %>
+            <a class="btn btn-sm btn-outline-secondary" href="<%= signup_path %>">Sign up</a>
+            <a class="btn btn-sm btn-outline-secondary" href="<%= login_path %>">Log in</a>
+          <% end %>
+          <% if logged_in? %>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-                Articles
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <% if logged_in? %>
-                  <%= link_to "Create new article", new_article_path, class: "dropdown-item" %>
-                <% end %>
-                <%= link_to "View articles", articles_path, class: "dropdown-item" %>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </li>
-            
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-                Categories
+                <%= "(admin)" if current_user.admin? %> Profile [<%= current_user.username%>] <!--"Admin" is only showed if the current user is admin -->
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <% if logged_in? && current_user.admin? %>
                   <%= link_to "Create new category", new_category_path, class: "dropdown-item" %>
                 <% end %>
-                <%= link_to "View categories", categories_path, class: "dropdown-item" %>
+                <%= link_to "View your profile", user_path(current_user), class: "dropdown-item" %> <!--Current_user giver brugerens id til users_path) --> 
+                <%= link_to "Edit your profile", edit_user_path(current_user), class: "dropdown-item" %>
+                <%= link_to "Delete profile", user_path(current_user), class: "dropdown-item text-danger", method: :delete, data: { confirm: "Are you sure your want to delete your profile?" } %>
+                <%= link_to 'Logout', logout_path, class: "dropdown-item text-danger", method: :delete %>
               </ul>
             </li>
             
-            <% if logged_in? %>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-                  <%= "(admin)" if current_user.admin? %> Profile [<%= current_user.username%>] <!--"Admin" is only showed if the current user is admin -->
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <%= link_to "View your profile", user_path(current_user), class: "dropdown-item" %> <!--Current_user giver brugerens id til users_path) --> 
-                  <%= link_to "Edit your profile", edit_user_path(current_user), class: "dropdown-item" %>
-                  <%= link_to "Delete profile", user_path(current_user), class: "dropdown-item text-danger", method: :delete, data: { confirm: "Are you sure your want to delete your profile?" } %>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <%= link_to 'Logout', logout_path, class: "nav-link", method: :delete %>
-              </li>
-            <% else %>
-              <li class="nav-item">
-                <%= link_to 'Log in', login_path, class: "nav-link" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to 'Sign up', signup_path, class: "nav-link" %>
-              </li>
-            <% end %>
-          </ul>
+          <% end %>
         </div>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
       </div>
+    </header>
+</body>
+
+<div class="container">
+  <div class="nav-scroller py-1 mb-2"> 
+    <nav class="nav d-flex justify-content-between">
+      <a class="p-2 text-muted" href="#">World</a>
+      <a class="p-2 text-muted" href="#">Sports</a>
+      <a class="p-2 text-muted" href="#">Finance</a>
+      <a class="p-2 text-muted" href="#">Lifestyle</a>
+      <a class="p-2 text-muted" href="#">Technology</a>
+      <a class="p-2 text-muted" href="#">Politics</a>
+      <a class="p-2 text-muted" href="#">Opinion</a>
+      <a class="p-2 text-muted" href="#">Science</a>
+      <a class="p-2 text-muted" href="#">Health</a>
+      <a class="p-2 text-muted" href="#">Travel</a>
+      <a class="p-2 text-muted" href="#">Design</a>
+      <%= link_to 'View all categories', categories_path, class: "p-2 text-muted" %>
     </nav>
+  </div>
+</div>  
+
+

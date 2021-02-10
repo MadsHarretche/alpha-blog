@@ -9,8 +9,8 @@ min-height: 60px;
 margin-bottom: 0px;
 }
 
-.nav-link { 
-  color: white !important;
+.nav-link {
+    color: grey !important;
 }
 
 #page-content {
@@ -20,9 +20,11 @@ margin-bottom: 0px;
 }
 
 #logo {
+ font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+ font-size: 2.25rem;
  float: left;
  font-size: 1.7em;
- color: #fff;
+ color: #343a40!important;
  text-transform: uppercase;
  letter-spacing: -1px;
  font-weight: bold;
