@@ -1,12 +1,15 @@
 <h1 class="text-center mt-4">Articles</h1>
   <div class="container">
-    <% obj.each do |article|%>
+    <% @articles.each do |article|%>
       <div class="row justify-content-md-center">
         <div class="col-12 mt-4">
           <div class="card text-center shadow mb-5 bg-white rounded", style="width: 70rem;"> 
             <div class="card-header font-italic">
               <% if article.user %>
               by <%= link_to article.user.username, user_path(article.user) %>
+              <% end %>
+              <% if article.categories.any? %>
+                <div class="mt-2"><%= render article.categories %></div> <!--Rails assume that you have a categories partial it can render from --> 
               <% end %>
             </div>
             <div class="card-body">
