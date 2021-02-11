@@ -2,21 +2,50 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-.navbar {
-background-color: black !important;
-border-radius: 0px;
-min-height: 60px;
-margin-bottom: 0px;
+
+
+
+#nav-container{
+  padding: 0px; //Up and down
 }
 
-.nav-link {
+.blog-header {
+    line-height: 1;
+    border-bottom: 1px solid #e5e5e5;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(229, 229, 229); // The grey line in the header
+}
+
+.navbarDropdown{
+  float: right;
+}
+
+.nav-link { //nav link where profile name is
     color: grey !important;
+}
+
+#navbar-under {
+    padding: .5rem!important;
+    padding-top: 0.5rem !important;
+    padding-right: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    padding-left: 0.5rem !important;
 }
 
 #page-content {
   flex: 1 0 auto;
-  background-color: lightgrey;
+  background-color: white;
   
+}
+
+#f-page-articles{
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+}
+
+.row { 
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 #logo {
@@ -110,3 +139,10 @@ body {
   }
   
   
+#article-title {
+  font-size: 2.75rem;
+  color: #000000;
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-weight: 600;
+  line-height: 1.2;
+}
