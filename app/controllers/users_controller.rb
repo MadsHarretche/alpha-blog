@@ -3,15 +3,25 @@ class UsersController < ApplicationController
   before_action :require_user, only: [:edit, :update]
   before_action :require_same_user, only: [:edit, :update, :destroy]
   
-  
-  
   def show
     @articles = @user.articles.paginate(page: params[:page], per_page: 4)
+    #@subscribers.new(:user_id, :current_user, set_author_id
+    if params[:subscribe] == '1'
+        flash[:notice] = "Your are now subscribed to this user"
+        #redirect_to user_path(@user.id)
+      #Kan forkortes:
+      #redirect_to (@article)
+    elsif params[:subscribe] == '0'
+      # Fjern subscription
+    else
+      
+    end
   end
   
   def index
-    @users = User.all
-    @users = User.paginate(page: params[:page], per_page: 4)
+    
+
+    @users = User.all.paginate(page: params[:page], per_page: 4)
   end
   
   def new
@@ -27,11 +37,13 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(user_params)
+    @user.picture.attach(params[:users])
     @user.password = params[:user][:password]
-    if @user.save
+    
+    if @user.save!
       session[:user_id] = @user.id
       flash[:notice] = "Welcome to Mads blog #{@user.username}, you have succesfully signed up"
-      redirect_to articles_path
+      redirect_to user_path(@user)
     else
       render 'new'
     end
@@ -58,7 +70,7 @@ class UsersController < ApplicationController
   
   private
   def user_params
-    params.require(:user).permit(:username, :email)
+    params.require(:user).permit(:username, :email, :picture)
   end
   
   def set_user
@@ -71,6 +83,7 @@ class UsersController < ApplicationController
         redirect_to @user
       end
     end
-
+  
+  
 
 end

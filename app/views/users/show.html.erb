@@ -1,11 +1,31 @@
 <h1 class="text-center mt-4"><%= @user.username %>'s profile</h1>
 
-<%= gravatar_for @user, size: 200 %>
-<div class="text-center mt-4"> 
-<% if logged_in? && @articles == current_user %>
-  <%= link_to "Edit your profile", edit_user_path, class: "btn btn-outline-info" %> 
+
+<% if @user.picture.attached? %> 
+    <image class="bd-placeholder-img" style="display: inline-block;" width="auto" height="250" src="<%=(url_for(@user.picture))%>">
+  <% else %>
+    <%= gravatar_for @user, size: 200 %>
 <% end %>
+
+<p></p>
+
+<div class="card text-center shadow mb-5 bg-white rounded", style="width: 70rem;"> 
+            
+            <div class="card-body">
+                
+                <a class="s-flex btn btn-outline-success" href="/users/<%= @user.id %>?subscribe=1">Subscribe</a>
+                
+              <% if logged_in? %> 
+                <% if @user == current_user %>
+                  <%= link_to "Edit", edit_user_path(@user), class: "btn btn-outline-primary" %>
+                <% end %>
+                <% if current_user.admin? %>
+                  <%= link_to "Delete user", user_path(@user), class: "btn btb-outline-danger", method: :delete, data: { confirm: "Are you sure your want to delete this profile?" } %>
+                <% end %>
+              <% end %>
+            </div>
 </div>
+
 
 <div class="flickr_pagination">
   <%= will_paginate @articles, :container => false %>

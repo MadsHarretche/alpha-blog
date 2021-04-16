@@ -7,11 +7,27 @@ class ArticlesController < ApplicationController
     
     def show
       @user = User.first
+      @article.update(reads: @article.reads + 1)
     end
     
     def index
-        @articles = Article.all
         @articles = Article.paginate(page: params[:page], per_page: 4)
+        
+        
+        
+        if params[:feed_type] == 'most_read'
+          @articles = most_read_articles
+        elsif params[:feed_type] == 'most_recent'
+          @articles = Article.all.order(created_at: :desc)
+        else
+          @articles = trending_articles
+        end
+        
+     #   if params[:search].blank?
+    #      @articles = Article.all
+     #   else
+      #    @articles = Article.where("title ILIKE ?", "%#{params[:search]}%")
+       # end
     end
     
     def new
@@ -25,7 +41,10 @@ class ArticlesController < ApplicationController
     
     def create
       @article = Article.new(article_params)
+      
       @article.user = current_user
+      @article.picture.attach(params[:article][:picture])
+  
       if @article.save
         flash[:notice] = "Article was created successfully!"
         redirect_to article_path(@article)
@@ -54,6 +73,8 @@ class ArticlesController < ApplicationController
       redirect_to articles_path
     end
     
+    
+    
     #private means that any method I put below it, are available only to this controller
     private
     
@@ -72,5 +93,18 @@ class ArticlesController < ApplicationController
       end
     end
     
+    def most_read_articles
+      Article.all.order(reads: :desc)
+    end
+    
+    def trending_articles
+      list = []
+      Category.all.map do |category|
+        article = category.articles.order(reads: :desc).first
+        list << article
+      end
+      
+      list.compact.uniq { |article| article.id }
+    end
     
 end

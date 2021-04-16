@@ -3,6 +3,8 @@ class User < ApplicationRecord
 #blive downcased inden det bliver saved
     before_save { self.email = email.downcase }
     has_many :articles, dependent: :destroy #any articles where user is detroyed, articles will be destroyed as well
+    has_many :subscribers
+    has_one_attached :picture
     validates :username, presence:true, 
                         uniqueness: { case_sensitive: false }, 
                         length: { minimum: 3, maximum: 25 }
