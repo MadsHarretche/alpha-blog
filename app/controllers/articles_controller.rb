@@ -13,12 +13,12 @@ class ArticlesController < ApplicationController
     def index
         @articles = Article.paginate(page: params[:page], per_page: 4)
         
-        
-        
         if params[:feed_type] == 'most_read'
           @articles = most_read_articles
         elsif params[:feed_type] == 'most_recent'
           @articles = Article.all.order(created_at: :desc)
+        elsif params[:feed_type] == 'friends_articles'
+          @friends_articles = user.article
         else
           @articles = trending_articles
         end
@@ -91,6 +91,13 @@ class ArticlesController < ApplicationController
       flash[:alert] = "You cannot edit others articles"
         redirect_to @article
       end
+    end
+
+    def friends_articles
+      @friends = current_user.friendships
+      
+      @friends_articles
+      Friendship.where(user_id == current_user)
     end
     
     def most_read_articles
