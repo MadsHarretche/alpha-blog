@@ -11,8 +11,6 @@ class ArticlesController < ApplicationController
     end
     
     def index
-        #@articles = Article.paginate(page: params[:page], per_page: 4)
-        
         if params[:feed_type] == 'most_read'
           @articles = most_read_articles
         elsif params[:feed_type] == 'most_recent'
@@ -22,12 +20,6 @@ class ArticlesController < ApplicationController
         else
           @articles = trending_articles
         end
-        
-     #   if params[:search].blank?
-    #      @articles = Article.all
-     #   else
-      #    @articles = Article.where("title ILIKE ?", "%#{params[:search]}%")
-       # end
     end
     
     def new
@@ -38,18 +30,13 @@ class ArticlesController < ApplicationController
       
     end
     
-    
     def create
       @article = Article.new(article_params)
-      
       @article.user = current_user
       @article.picture.attach(params[:article][:picture])
-  
       if @article.save
         flash[:notice] = "Article was created successfully!"
-        redirect_to article_path(@article)
-      #Kan forkortes:
-      #redirect_to (@article)
+        redirect_to @article
       else
         render 'new'
       end
