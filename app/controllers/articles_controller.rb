@@ -1,6 +1,4 @@
 class ArticlesController < ApplicationController
-    #before_action kalder set_article på alle metoder dvs. @article = Article.find(params[:id])
-    #Men kun de metoder som er skrevet i only:
     before_action :set_article, only: [:show, :edit, :update, :destroy] #finder id'et på den artikel du vil handle med
     before_action :require_user, except: [:show, :index]
     before_action :require_same_user, only: [:edit, :update, :destroy]
@@ -27,7 +25,6 @@ class ArticlesController < ApplicationController
     end
     
     def edit
-      
     end
     
     def create
@@ -51,7 +48,6 @@ class ArticlesController < ApplicationController
       else
         render 'edit'
       end
-    
     end
     
     def destroy
@@ -59,10 +55,7 @@ class ArticlesController < ApplicationController
       flash[:danger] = "Article was deleted"
       redirect_to articles_path
     end
-    
-    
-    
-    #private means that any method I put below it, are available only to this controller
+
     private
     
     def set_article
@@ -85,7 +78,6 @@ class ArticlesController < ApplicationController
                          WHERE (user_id = :user_id AND accepted = 't')"
         Article.where("user_id IN (#{friend_ids})
                          OR user_id = :user_id")
-      
     end
     
     def most_read_articles
@@ -98,8 +90,6 @@ class ArticlesController < ApplicationController
         article = category.articles.order(reads: :desc).first
         list << article
       end
-      
       list.compact.uniq { |article| article.id }
     end
-    
 end
