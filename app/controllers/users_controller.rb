@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :require_same_user, only: [:edit, :update, :destroy]
   
   def show
-    @articles = @user.articles.paginate(page: params[:page], per_page: 4)
+    @articles = @user.articles
     #@subscribers.new(:user_id, :current_user, set_author_id
     if params[:subscribe] == '1'
         flash[:notice] = "Your are now subscribed to this user"
@@ -13,15 +13,11 @@ class UsersController < ApplicationController
       #redirect_to (@article)
     elsif params[:subscribe] == '0'
       # Fjern subscription
-    else
-      
     end
   end
   
   def index
-    
-
-    @users = User.all.paginate(page: params[:page], per_page: 4)
+    @users = User.all
   end
   
   def new

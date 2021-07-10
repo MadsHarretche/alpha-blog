@@ -19,7 +19,6 @@ class CategoriesController < ApplicationController
   
   def index
     @categories = Category.all
-    @categories = Category.paginate(page: params[:page], per_page: 5)
   end
   
   def edit
@@ -28,7 +27,7 @@ class CategoriesController < ApplicationController
   
   def show
     @category = Category.find(params[:id]) #initiating created category to show page
-    @articles = @category.articles.paginate(page: params[:page], per_page: 5)
+    @articles = @category.articles
   end
   
   def update

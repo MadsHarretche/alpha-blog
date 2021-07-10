@@ -1,11 +1,11 @@
 <h1 class="text-center mt-4">Log in</h1>
 
 
-<div class="container">
+<div class="container login-container">
   <div class="row justify-content-center">
     <div class="col-10">
       <%= form_with(scope: :session, url: login_path, class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
-        <div class="form-group row">
+        <div class="form-group">
           <%= f.label :email, class: "col-2 col-form-label text-light" %>
           <div class="col-10"> 
             <%= f.email_field :email, class: "form-control shadow rounded", placeholder: "Enter your email address" %>
@@ -29,3 +29,26 @@
     </div>
   </div>
 </div> 
+
+
+<div class="container ">
+  <div class="row justify-content-center">
+    <div class="col-md-6 login-form-1">   
+       <h3>Login</h3>
+       <%= form_with(scope: :session, url: login_path, local: true) do |f| %>
+          <div class="form-group">
+            <%= f.email_field :email, class: "form-control shadow rounded", placeholder: "Enter your email address" %>
+          </div>
+          <div class="form-group">
+              <input type="password" class="form-control" placeholder="Your Password *" value="" />
+          </div>
+          <div class="form-group">
+              <input type="submit" class="btnSubmit" value="Login" />
+          </div>
+          <div class="form-group">
+              <a href="#" class="ForgetPwd">Forget Password?</a>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>

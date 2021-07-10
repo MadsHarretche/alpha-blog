@@ -11,14 +11,14 @@ class ArticlesController < ApplicationController
     end
     
     def index
-        @articles = Article.paginate(page: params[:page], per_page: 4)
+        #@articles = Article.paginate(page: params[:page], per_page: 4)
         
         if params[:feed_type] == 'most_read'
           @articles = most_read_articles
         elsif params[:feed_type] == 'most_recent'
           @articles = Article.all.order(created_at: :desc)
         elsif params[:feed_type] == 'friends_articles'
-          @friends_articles = user.article
+          #@articles = friends_articles
         else
           @articles = trending_articles
         end
@@ -94,10 +94,11 @@ class ArticlesController < ApplicationController
     end
 
     def friends_articles
-      @friends = current_user.friendships
+        friend_ids = "SELECT friend_id FROM friendships
+                         WHERE (user_id = :user_id AND accepted = 't')"
+        Article.where("user_id IN (#{friend_ids})
+                         OR user_id = :user_id")
       
-      @friends_articles
-      Friendship.where(user_id == current_user)
     end
     
     def most_read_articles
