@@ -13,8 +13,6 @@ class ArticlesController < ApplicationController
           @articles = most_read_articles
         elsif params[:feed_type] == 'most_recent'
           @articles = Article.all.order(created_at: :desc)
-        elsif params[:feed_type] == 'friends_articles'
-          #@articles = friends_articles
         else
           @articles = trending_articles
         end
@@ -52,8 +50,6 @@ class ArticlesController < ApplicationController
     
     def destroy
       @article.destroy
-      flash[:danger] = "Article was deleted"
-      redirect_to articles_path
     end
 
     private
@@ -71,13 +67,6 @@ class ArticlesController < ApplicationController
       flash[:alert] = "You cannot edit others articles"
         redirect_to @article
       end
-    end
-
-    def friends_articles
-        friend_ids = "SELECT friend_id FROM friendships
-                         WHERE (user_id = :user_id AND accepted = 't')"
-        Article.where("user_id IN (#{friend_ids})
-                         OR user_id = :user_id")
     end
     
     def most_read_articles
