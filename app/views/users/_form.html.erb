@@ -8,7 +8,7 @@
     <div class="col-md-6">
 		<div class="card">
 			<header class="card-header">
-				<a href="" class="float-right btn btn-outline-primary mt-1">Log in</a>
+				<%= link_to "Log in", login_path, class: "float-right btn btn-outline-primary mt-1" %>
 				<h4 class="card-title mt-2">Sign up</h4>
 			</header>
 			<article class="card-body">
@@ -52,7 +52,11 @@
 						</div> <!-- form-group end.// -->
 					</div> <!-- form-row.// -->
 					<div class="form-group">
-						<label>Create password</label>
+						<% if !@user.present? %>
+							<label>Create password</label>
+							<% else %>
+							<label>Update password</label>
+						<% end %>
 						<%= f.password_field :password, class:"form-control", placeholder: "Your Password *" %>
 					</div> <!-- form-group end.// -->  
 						<div class="form-group">
@@ -64,7 +68,7 @@
 				<% end %>
 			</article> <!-- card-body end .// -->
 			<div class="border-top card-body text-center">Have an account? 
-				<a href="">Log In</a>
+				<%= link_to "Log in", login_path %>
 			</div>
 		</div>
     </div>
